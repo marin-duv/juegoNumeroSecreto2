@@ -1,24 +1,26 @@
 /*
-
 let titulo = document.querySelector('h1');
 //para realizar el reto de ejercicios 
 //titulo.innerHTML = 'Hora del desafio'
 titulo.innerHTML = 'Juego del número secreto'
-
 */
 
 /*
 antes se asignaba asi a parrafo `p`
 let parrafo = document.querySelector('p');
 parrafo.innerHTML = 'Selecciona un número del 1 al 10'
-
 */
 
 // funcion generica
-
+let numeroSecreto = 0;
+let intentos = 0;
+/*
+// esto ya no se usan asi 
 let numeroSecreto = generarNumeroSecreto();
+let intentos = 1;
+*/
 
-console.log("numero secreto = " , (numeroSecreto));
+console.log("número secreto = " , (numeroSecreto));
 
 function asignarTextoElemento(elemento, texto) {
     let elementoHTML = document.querySelector(elemento); 
@@ -28,21 +30,70 @@ function asignarTextoElemento(elemento, texto) {
 
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
-    console.log ("numero de usuario = ", (typeof(numeroDeUsuario)));
-    console.log("numero de usuario= ", (numeroDeUsuario));
-        console.log ("numero secreto = ", (typeof("numero secreto, ", numeroSecreto)));
-    console.log("numero secreto=", (numeroSecreto));
+    console.log ("número de usuario = ", (typeof(numeroDeUsuario)));
+    console.log("número de usuario= ", (numeroDeUsuario));
+    console.log ("número secreto = ", (typeof("número secreto, ", numeroSecreto)));
+    console.log("número secreto=", (numeroSecreto));
     // el "===" compara y debe ser igual en tipo y en valor si no retorna FALSO
-    console.log(numeroDeUsuario === numeroSecreto);
+    
+    if (numeroDeUsuario === numeroSecreto) {
+        asignarTextoElemento('p',`FELICIDADES ACERTASTE EL NÚMERO SECRETO ¡¡¡ en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
+        document.getElementById('reiniciar').removeAttribute('disabled');
+    } else {
+        // el usuario no acertó.
+        if (numeroDeUsuario > numeroSecreto) {
+            asignarTextoElemento('p','El número secreto es MENOR');
+        } else {
+            asignarTextoElemento('p','El número secreto es MAYOR');
+        }
+        intentos++;
+        console.log("número de intentos=", (intentos));
+        limpiarCaja();
+    }
     return;
+}
+
+function limpiarCaja (){
+    /*
+    //opción 1
+    let valorCaja = document.querySelector('#valorUsuario');
+    valorCaja.value  = '';
+    */
+    //opción 2 ok
+    document.querySelector('#valorUsuario').value= '';
+}
+
+function condicionesIniciales(){
+    asignarTextoElemento('h1','Juego del Número Secreto ');
+    asignarTextoElemento('p', 'Selecciona un número del 1 al 60')
+    numeroSecreto = generarNumeroSecreto();
+    intentos = 1;
+}
+
+function reiniciarJuego(){
+    //limpiar la caja
+    limpiarCaja();
+    //indicar mensaje intervalo de números
+    //generar numero aleatorio
+    //inicializar numero de intentos
+    condicionesIniciales();  
+    //desabilitar boton de nuevo juego
+    document.querySelector('#reiniciar').setAttribute('disabled',true);
 }
 
 function generarNumeroSecreto() {
     return Math.floor(Math.random()*60)+1;
 }
 
+condicionesIniciales();
+/*
+// se desabilitan por que se encapsularon en una funcion de mensajes inciales
 asignarTextoElemento('h1','Juego del Número Secreto ');
 asignarTextoElemento('p', 'Selecciona un número del 1 al 60')
+*/
+
+
+//Desafios_A
 
 /*
 //1.Crear una función que muestre "¡Hola, mundo!" en la consola.
@@ -125,8 +176,9 @@ numeroMayor(208,120);
 function multiplicar(numeroA){
     resultado = (numeroA * numeroA);
     alert (`El resultado es: ${resultado}`);
+    return;
 }
-multiplicar(90)
+multiplicar(9)
 */
 
 /*
@@ -140,5 +192,6 @@ function console() {
     let numero2 = parseInt(prompt (`escribe el segundo número`));
     suma = (numero1 + numero2);
     alert (`Suma es igual a ${suma}`);
+    return;
 }
 */
