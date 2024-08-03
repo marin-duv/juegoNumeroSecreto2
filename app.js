@@ -15,6 +15,7 @@ parrafo.innerHTML = 'Selecciona un número del 1 al 10'
 let numeroSecreto = 0;
 let intentos = 0;
 let listaNumerosSorteados = [];
+let numeroMaximo = 10;
 /*
 // esto ya no se usan asi 
 let numeroSecreto = generarNumeroSecreto();
@@ -81,22 +82,28 @@ function limpiarCaja (){
 
 function generarNumeroSecreto() {
     //return Math.floor(Math.random()*60)+1;
-    let numeroGenerado = Math.floor(Math.random()*60)+1;
+    let numeroGenerado = Math.floor(Math.random()*numeroMaximo)+1;
     console.log(numeroGenerado);
     console.log(listaNumerosSorteados);
-    // si el numero generado esta incluido en la. lista 
-    if (listaNumerosSorteados.includes(numeroGenerado)) {
-        //aplicando recursividad
-        return generarNumeroSecreto();
-    } else {
-        listaNumerosSorteados.push(numeroGenerado);
-        return numeroGenerado;
+    // si ya sorteamos todos los numeros 
+    if (listaNumerosSorteados.length == numeroMaximo){
+        //validador para evitar recursividad viciada 
+        asignarTextoElemento('p', 'Ya se sortearon todos los Números Posibles');
+    } else { 
+        // si el numero generado esta incluido en la lista
+        if (listaNumerosSorteados.includes(numeroGenerado)) {
+            //aplicando recursividad
+            return generarNumeroSecreto();
+        } else {
+            listaNumerosSorteados.push(numeroGenerado);
+            return numeroGenerado;
+        }
     }
 }
 
 function condicionesIniciales(){
     asignarTextoElemento('h1','Juego del Número Secreto ');
-    asignarTextoElemento('p', 'Selecciona un número del 1 al 60')
+    asignarTextoElemento('p', `Selecciona un número del 1 al ${numeroMaximo}`)
     numeroSecreto = generarNumeroSecreto();
     intentos = 1;
 }
