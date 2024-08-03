@@ -14,6 +14,7 @@ parrafo.innerHTML = 'Selecciona un número del 1 al 10'
 // funcion generica
 let numeroSecreto = 0;
 let intentos = 0;
+let listaNumerosSorteados = [];
 /*
 // esto ya no se usan asi 
 let numeroSecreto = generarNumeroSecreto();
@@ -30,10 +31,11 @@ function asignarTextoElemento(elemento, texto) {
 
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
-    console.log ("número de usuario = ", (typeof(numeroDeUsuario)));
-    console.log("número de usuario= ", (numeroDeUsuario));
-    console.log ("número secreto = ", (typeof("número secreto, ", numeroSecreto)));
-    console.log("número secreto=", (numeroSecreto));
+    //*console.log ("número de usuario = ", (typeof(numeroDeUsuario)));
+    //*console.log("número de usuario= ", (numeroDeUsuario));
+    //*console.log ("número secreto = ", (typeof("número secreto, ", numeroSecreto)));
+    //*console.log("número secreto=", (numeroSecreto));
+
     // el "===" compara y debe ser igual en tipo y en valor si no retorna FALSO
     
     if (numeroDeUsuario === numeroSecreto) {
@@ -53,6 +55,20 @@ function verificarIntento() {
     return;
 }
 
+function ejecutarConEnter (event){
+    if (event.key === 'Enter'){
+        //*console.log('HAS presionado enter');
+        verificarIntento();
+    }
+}
+document.addEventListener('DOMContentLoaded', (event) => {
+    const input = document.getElementById('valorUsuario');
+    input.addEventListener('keydown', ejecutarConEnter);
+});
+
+
+
+
 function limpiarCaja (){
     /*
     //opción 1
@@ -63,6 +79,21 @@ function limpiarCaja (){
     document.querySelector('#valorUsuario').value= '';
 }
 
+function generarNumeroSecreto() {
+    //return Math.floor(Math.random()*60)+1;
+    let numeroGenerado = Math.floor(Math.random()*60)+1;
+    console.log(numeroGenerado);
+    console.log(listaNumerosSorteados);
+    // si el numero generado esta incluido en la. lista 
+    if (listaNumerosSorteados.includes(numeroGenerado)) {
+        //aplicando recursividad
+        return generarNumeroSecreto();
+    } else {
+        listaNumerosSorteados.push(numeroGenerado);
+        return numeroGenerado;
+    }
+}
+
 function condicionesIniciales(){
     asignarTextoElemento('h1','Juego del Número Secreto ');
     asignarTextoElemento('p', 'Selecciona un número del 1 al 60')
@@ -71,6 +102,7 @@ function condicionesIniciales(){
 }
 
 function reiniciarJuego(){
+    alert('INICIANDO JUEGO NUEVO');
     //limpiar la caja
     limpiarCaja();
     //indicar mensaje intervalo de números
@@ -79,10 +111,6 @@ function reiniciarJuego(){
     condicionesIniciales();  
     //desabilitar boton de nuevo juego
     document.querySelector('#reiniciar').setAttribute('disabled',true);
-}
-
-function generarNumeroSecreto() {
-    return Math.floor(Math.random()*60)+1;
 }
 
 condicionesIniciales();
