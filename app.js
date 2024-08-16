@@ -327,6 +327,100 @@ multiplica(8);
 //FIN DE DESAFIOS_B
 */
 
+//DESAFIO_C
+
+//1-Crea una lista vacía llamada "listaGenerica".
+
+let listaGenerica= [];
+console.log (`Esta es la lista generia `, (listaGenerica));
+
+//2-Crea una lista de lenguajes de programación llamada
+//"lenguagesDeProgramacion con los siguientes elementos: 'JavaScript', 'C', 'C++', 'Kotlin' y 'Python'.
+
+let lenguagesDeProgramacion = ['JavaScript', 'C', 'C++', 'Kotlin', 'Python'];
+console.log (`Vector de lenguajes de programación`, (lenguagesDeProgramacion));
+
+//3-Agrega a la lista "lenguagesDeProgramacion los siguientes elementos: 'Java', 'Ruby' y 'GoLang'.
+
+lenguagesDeProgramacion.push('Java', 'Ruby', 'GoLang');
+console.log (`Vector completo de lenguajes de programación`, (lenguagesDeProgramacion));
+
+//4-Crea una función que muestre en la consola todos los elementos de la lista "lenguagesDeProgramacion.
+
+function ver () {
+    console.log (`Vector mostrado con una funcion los lenguajes`, (lenguagesDeProgramacion));
+    return;
+}
+ver()
+
+//5-Crea una función que muestre en la consola todos los elementos de la lista
+// "lenguagesDeProgramacion en orden inverso.
+
+function verInverso() {
+    const reverse = lenguagesDeProgramacion.reverse();
+    console.log (`Vector mostrado con una funcion ORDEN INVERSO los lenguajes`, (reverse));
+    return;
+}
+verInverso()
+
+//6-Crea una función que calcule el promedio de los elementos en una lista de números.
+
+function calificaciones(){
+    const notas = [90,70,80,90,90,100,100,100];
+    const suma = notas.reduce((valorAnterior, valorActual) => {
+        return valorAnterior + valorActual;
+    },0);
+    console.log (`Suma de las calificaciones: `, (suma));
+    promedio = (suma) / (notas.length);
+    console.log (`tamaño de lista de calificaciones`, (notas.length));
+    console.log (`El promedio es : `, (promedio));
+    return;
+}
+calificaciones();
+
+
+//7- Crea una función que muestre en la consola el número más grande
+//y el número más pequeño en una lista.
+
+function numeroMayorMenor(){
+    let numeros = [1,2,3,4,5,6,7,8,9,10,11,13,14,15,16];
+    //opcion 1 numero minimo si funciona
+    /*
+    var min = numeros [0];
+    for (let i=0; i < numeros.length; i++) {
+        if (min<numeros[i++]){
+            (min=numeros[i++])
+        }else if (min > numeros [i++]){
+            (numeros[i++]=min)
+        } else {
+            console.log(`Número minimo = `,(min));
+        }
+    }
+    */
+
+    //En las siguientes lineas utilice el operador spread (aun no conozco ) y
+    //asi funciono el número min y max del array
+    console.log (`Número menor = `,(Math.min(...numeros)));
+    console.log(`Número mayor = `,(Math.max(...numeros)));
+    return;
+}
+numeroMayorMenor();
+
+//8-Crea una función que devuelva la suma de todos los elementos en una lista.
+// se utilizo reduce
+function suma(){
+    elementos = [8,6,2,10,50];
+    let resultado = elementos.reduce(
+        (sum, item) => sum + item,
+        0
+    );
+    console.log(`la suma es: `, (resultado));
+    return;
+}
+suma();
+
+
+
 
 
 
