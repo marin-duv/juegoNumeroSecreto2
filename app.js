@@ -331,21 +331,28 @@ multiplica(8);
 
 //1-Crea una lista vacía llamada "listaGenerica".
 
+//opcion 1
 let listaGenerica= [];
 console.log (`Esta es la lista generia `, (listaGenerica));
+//(solucion del maestro es igual a opcion 1)
 
 //2-Crea una lista de lenguajes de programación llamada
 //"lenguagesDeProgramacion con los siguientes elementos: 'JavaScript', 'C', 'C++', 'Kotlin' y 'Python'.
 
+//opcion 1
 let lenguagesDeProgramacion = ['JavaScript', 'C', 'C++', 'Kotlin', 'Python'];
 console.log (`Vector de lenguajes de programación`, (lenguagesDeProgramacion));
+//(solucion del maestro es igual a opcion 1)
 
 //3-Agrega a la lista "lenguagesDeProgramacion los siguientes elementos: 'Java', 'Ruby' y 'GoLang'.
-
+//opcion 1
 lenguagesDeProgramacion.push('Java', 'Ruby', 'GoLang');
 console.log (`Vector completo de lenguajes de programación`, (lenguagesDeProgramacion));
+//(solucion del maestro es igual a opcion 1)
 
 //4-Crea una función que muestre en la consola todos los elementos de la lista "lenguagesDeProgramacion.
+
+//opcion 1
 
 function ver () {
     console.log (`Vector mostrado con una funcion los lenguajes`, (lenguagesDeProgramacion));
@@ -353,9 +360,21 @@ function ver () {
 }
 ver()
 
+//solucion  maestro
+
+function mostrarLenguagesSeparadamente() {
+    for (let i = 0; i < lenguagesDeProgramacion.length; i++) {
+        console.log(lenguagesDeProgramacion[i]);
+    }
+}
+
+mostrarLenguagesSeparadamente();
+
+
 //5-Crea una función que muestre en la consola todos los elementos de la lista
 // "lenguagesDeProgramacion en orden inverso.
 
+// opcion 1
 function verInverso() {
     const reverse = lenguagesDeProgramacion.reverse();
     console.log (`Vector mostrado con una funcion ORDEN INVERSO los lenguajes`, (reverse));
@@ -363,7 +382,20 @@ function verInverso() {
 }
 verInverso()
 
+//solucion maestro
+
+function mostrarLenguagesReversoSeparadamente() {
+    for (let i = lenguagesDeProgramacion.length - 1; i >= 0; i--) {
+        console.log(lenguagesDeProgramacion[i]);
+    }
+}
+
+mostrarLenguagesReversoSeparadamente();
+
+
 //6-Crea una función que calcule el promedio de los elementos en una lista de números.
+
+//opcion 1
 
 function calificaciones(){
     const notas = [90,70,80,90,90,100,100,100];
@@ -379,8 +411,24 @@ function calificaciones(){
 calificaciones();
 
 
+//solucion maestro
+
+function calcularMedia(lista) {
+    let suma = 0;
+    for (let i = 0; i < lista.length; i++) {
+        suma += lista[i];
+    }
+    return suma / lista.length;
+}
+
+let numeros_h = [10, 20, 30, 40, 50];
+let media = calcularMedia(numeros_h);
+console.log("Média: (o promedio) 's' ", media);
+
 //7- Crea una función que muestre en la consola el número más grande
 //y el número más pequeño en una lista.
+
+//opcion 1
 
 function numeroMayorMenor(){
     let numeros = [1,2,3,4,5,6,7,8,9,10,11,13,14,15,16];
@@ -406,8 +454,33 @@ function numeroMayorMenor(){
 }
 numeroMayorMenor();
 
+
+//solucion maestro
+
+function encontrarMayorMenor(lista) {
+    let mayor = lista[0];
+    let menor = lista[0];
+    for (let i = 1; i < lista.length; i++) {
+        if (lista[i] > mayor) {
+            mayor = lista[i];
+        }
+        if (lista[i] < menor) {
+            menor = lista[i];
+        }
+    }
+    console.log("Mayor 's' :", mayor);
+    console.log("Menor:'s' :", menor);
+}
+let numeros_a = [15, 8, 25, 5, 12];
+encontrarMayorMenor(numeros_a);
+
+
+
 //8-Crea una función que devuelva la suma de todos los elementos en una lista.
 // se utilizo reduce
+
+//opcion_1
+
 function suma(){
     elementos = [8,6,2,10,50];
     let resultado = elementos.reduce(
@@ -419,9 +492,98 @@ function suma(){
 }
 suma();
 
+//solucion maestro
+function calcularSuma(lista_h) {
+    let suma_ok = 0;
+    for (let i = 0; i < lista_h.length; i++) {
+    suma_ok += lista_h[i];
+    }
+    return suma_ok;
+}
+let numeros = [15, 8, 25, 5, 12];
+let suma_ok = calcularSuma(numeros);
+console.log("Suma: 's' ", suma_ok);
+
+//9-Crea una función que devuelva la posición en la lista donde 
+//se encuentra un elemento pasado como parámetro, o -1 si no existe en la lista.
+
+//opcion 1
+
+function buscarPosicion(lista, elemento){
+    for ( let i = 0; i < lista.length; i++) {
+        if (lista[i] === elemento){
+            return i;
+        }
+    }
+    return -1;
+}
+
+const lista = [1, 2, 3, 4, 5];
+const elemento = 3;
+const posicion = buscarPosicion (lista, elemento);
+console.log("La posición en la lista es:", posicion);// imprime la posicion 2
+
+// solucion maestro ---es la misma---
+
+
+//10-Crea una función que reciba dos listas de números del mismo tamaño
+//y devuelva una nueva lista con la suma de los elementos uno a uno.
+
+//opcion_1
+
+function sumarListas (lista_1, lista_2) {
+    if (lista_1.length !== lista_2.length) {
+        throw new Error ("A Q U I ===> listas deben tener el mismo tamaño !");
+    }
+    const lista_3 = [];
+    for ( let i = 0; i < lista_1.length; i++){
+        lista_3.push(lista_1[i]+lista_2[i]);
+    }
+    return lista_3;
+}
+const lista_1 = [584, 457, 854];
+const lista_2 = [879, 546, 485];
+const listaSuma = sumarListas (lista_1, lista_2);
+console.log("La suma de las listas es: ",listaSuma);
+
+// solucion propuesta por el maestro
+
+function sumListas(lista_d, lista_f) {
+    return lista_d.map((num, index) => num + lista_f[index]);
+}
+
+const lista_d = [1, 2, 3];
+const lista_f = [4, 5, 6];
+const resultado_sum = sumarListas(lista_d, lista_f);
+console.log("Suma de las listas `s` " , resultado_sum);  
 
 
 
+
+//11-Crea una función que reciba una lista de números y devuelva una nueva 
+//lista con el cuadrado de cada número.
+
+//opcion 1
+
+function cuadradoDeLista (lista_a){
+    const lista_b = [];
+    for (let i = 0; i < lista_a.length; i++) {
+        lista_b.push(lista_a[i]*lista_a[i]);
+    }
+    return lista_b;
+}
+const lista_a = [1,2,3,4,5,6,7,8,9,10];
+const resultadoCuadrado = cuadradoDeLista (lista_a);
+console.log ("El cuadrado de la lista es: ", resultadoCuadrado);
+
+//resultado propuesto maestro solucion
+
+function cuadradoLista(lista_x) {
+    return lista_x.map(num => num ** 2);
+}
+const lista_x = [1, 2, 3, 4, 5, 6];
+const resultado = cuadradoLista(lista_x);
+console.log("Cuadrado de la lista `s` ", resultado);  
 
 
 
