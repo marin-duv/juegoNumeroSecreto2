@@ -11,7 +11,7 @@ let parrafo = document.querySelector('p');
 parrafo.innerHTML = 'Selecciona un número del 1 al 10'
 */
 
-//Version 1 de jeugo de numero secreto
+//Version 1.1 de juego de numero secreto
 // funcion generica
 let numeroSecreto = 0;
 let intentos = 0;
